@@ -1,9 +1,11 @@
-from gpiozero import LED, PWMLED
+from gpiozero import LED, PWMLED, Button
 from time import sleep
 from signal import pause
 
-#led = LED(17)
-led = PWMLED(17)
+led = LED(17)
+button = Button(2)
+
+#led = PWMLED(17)
 #def blink():
 #    while True:
 #        led.on()
@@ -11,5 +13,7 @@ led = PWMLED(17)
 #        led.off()
 #        sleep(1)
 
-led.pulse()
+button.when_pressed = led.blink
+button.when_released = led.off
+
 pause()
